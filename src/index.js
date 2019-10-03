@@ -1,5 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/styles.scss";
+import App from "./components/App";
+import { BrowserRouter as Router } from "react-router-dom";
 
-ReactDOM.render(<p>Hello Expensify</p>, document.getElementById("root"));
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+
+  document.getElementById("root")
+);
