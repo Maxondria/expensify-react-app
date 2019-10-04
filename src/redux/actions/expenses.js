@@ -17,7 +17,7 @@ const addExpense = ({
   }
 });
 
-const removeExpense = ({ id } = {}) => ({
+const removeExpense = (id) => ({
   type: actionTypes.REMOVE_EXPENSE,
   id
 });
