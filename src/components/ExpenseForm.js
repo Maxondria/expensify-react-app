@@ -10,7 +10,8 @@ export default class ExpenseForm extends React.Component {
     description: "",
     note: "",
     calenderFocused: false,
-    date: moment()
+    date: moment(),
+    error: ""
   };
 
   OnChange = ({ target: { name, value } }) => {
@@ -25,19 +26,36 @@ export default class ExpenseForm extends React.Component {
     }));
   };
 
-  OnSave = e => {
-    e.preventDefault();
-    console.log(this.state);
-  };
-
   OnFocusChange = ({ focused }) => this.setState({ calenderFocused: focused });
 
-  OnDateChange = date => this.setState({ date });
+  OnDateChange = date => {
+    if (date) {
+      this.setState({ date });
+    }
+  };
+
+  onFormSubmit = e => {
+    e.preventDefault();
+    const { description, date, amount, note } = this.state;
+
+    if (!description || !amount) {
+      this.setState({ error: "Amount and Description Required" });
+    } else {
+      this.setState({ error: "" });
+      this.props.onSubmit({
+        description,
+        date: date.valueOf(),
+        note,
+        amount: parseFloat(amount)
+      });
+    }
+  };
 
   render() {
     return (
       <div>
-        <form>
+        {this.state.error && <p>{this.state.error}</p>}
+        <form onSubmit={this.onFormSubmit}>
           <input
             type="text"
             name="description"
@@ -53,7 +71,7 @@ export default class ExpenseForm extends React.Component {
             onChange={this.OnChange}
             placeholder="Amount"
           />
-           {/* eslint-disable react/prop-types */}
+          {/* eslint-disable react/prop-types */}
           <SingleDatePicker
             date={this.state.date}
             onDateChange={this.OnDateChange}
@@ -71,7 +89,7 @@ export default class ExpenseForm extends React.Component {
             onChange={this.OnChange}
             value={this.state.note}
           />
-          <button onClick={this.OnSave}>Save Expense</button>
+          <button type="submit">Save Expense</button>
         </form>
       </div>
     );

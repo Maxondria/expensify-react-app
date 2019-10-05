@@ -5,7 +5,7 @@ const addExpense = ({
   description = "",
   note = "",
   amount = 0,
-  createdAt = 0
+  date = 0
 } = {}) => ({
   type: actionTypes.ADD_EXPENSE,
   expense: {
@@ -13,11 +13,11 @@ const addExpense = ({
     description,
     note,
     amount,
-    createdAt
+    createdAt: date
   }
 });
 
-const removeExpense = (id) => ({
+const removeExpense = id => ({
   type: actionTypes.REMOVE_EXPENSE,
   id
 });
