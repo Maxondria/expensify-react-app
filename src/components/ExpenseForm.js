@@ -1,7 +1,5 @@
 import React from "react";
 import moment from "moment";
-import "react-dates/initialize";
-import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
 
 export default class ExpenseForm extends React.Component {
@@ -85,6 +83,7 @@ export default class ExpenseForm extends React.Component {
             onFocusChange={this.OnFocusChange}
             numberOfMonths={1}
             isOutsideRange={() => false}
+            showClearDate={true}
             id="CreatedAt"
           />
           <textarea
