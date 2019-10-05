@@ -40,6 +40,14 @@ it("should return Add Expense Action", function() {
 
   const addExpenseAction = addExpense(newExpense);
 
-  expect(addExpenseAction.type).toEqual(actionTypes.ADD_EXPENSE);
-  expect(addExpenseAction.expense.description).toEqual(newExpense.description);
+  expect(addExpenseAction).toMatchObject({
+    type: actionTypes.ADD_EXPENSE,
+    expense: {
+      id: expect.any(String),
+      description: "description",
+      note: "note",
+      amount: 45,
+      createdAt: 0
+    }
+  });
 });
