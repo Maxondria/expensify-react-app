@@ -24,7 +24,10 @@ const removeExpense = id => ({
 
 const editExpense = (id, expense) => ({
   type: actionTypes.EDIT_EXPENSE,
-  expense
+  payload: {
+    expense,
+    id
+  }
 });
 
 export { addExpense, removeExpense, editExpense };
