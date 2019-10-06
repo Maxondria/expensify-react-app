@@ -8,8 +8,6 @@ const Header = () => (
     {" | "}
     <NavLink activeClassName="is-active" to="/create">Add Expense</NavLink>
     {" | "}
-    <NavLink activeClassName="is-active" to="/edit">Edit Expense</NavLink>
-    {" | "}
     <NavLink activeClassName="is-active" to="/help">Help</NavLink>
   </header>
 );
