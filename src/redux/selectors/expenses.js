@@ -6,10 +6,10 @@ export default (expenses, filters) => {
     .filter(expense => {
       const createdAtMoment = moment(expense.createdAt);
       const startDateMatch = startDate
-        ? startDate.isSameOrBefore(createdAtMoment, "day")
+        ? createdAtMoment.isSameOrAfter(startDate, "day")
         : true;
       const endDateMatch = endDate
-        ? endDate.isSameOrAfter(createdAtMoment, "day")
+        ? createdAtMoment.isSameOrBefore(endDate, "day")
         : true;
       const textMatch = expense.description
         .toLowerCase()
