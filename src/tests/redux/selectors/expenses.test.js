@@ -54,3 +54,13 @@ it("should sort by date", function() {
 
   expect(result).toEqual([three, five, one, four, two]);
 });
+
+it("should sort by amount", function() {
+  const filters = {
+    ...reusableFilters
+  };
+  const result = selectExpenses(expenses, filters);
+  const [one, two, three, four, five] = expenses;
+
+  expect(result).toEqual([two, three, five, four, one]);
+});
