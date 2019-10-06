@@ -4,9 +4,9 @@ import {
   setStartDate,
   sortByAmount,
   setTextFilter
-} from "../../redux/actions/filters";
+} from "../../../redux/actions/filters";
 
-import actionTypes from "../../redux/constants";
+import actionTypes from "../../../redux/constants";
 import moment from "moment";
 
 it("should generate set startDate action object", function() {

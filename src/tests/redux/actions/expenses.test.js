@@ -2,8 +2,8 @@ import {
   addExpense,
   editExpense,
   removeExpense
-} from "../../redux/actions/expenses";
-import actionTypes from "../../redux/constants";
+} from "../../../redux/actions/expenses";
+import actionTypes from "../../../redux/constants";
 
 it("should return Remove Expense Action", function() {
   const id = "abd-efg-hij-klm";
