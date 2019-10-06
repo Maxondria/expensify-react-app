@@ -1,5 +1,5 @@
 import selectExpenses from "../../../redux/selectors/expenses";
-import expenses from "./expensesTestData";
+import expenses from "../fixtures/expenses.fixture";
 import moment from "moment";
 
 const reusableFilters = {
