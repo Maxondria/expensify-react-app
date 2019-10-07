@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should exit page if no expense was found (Reloading Page with temporary store) 1`] = `
+<div>
+  <p>
+    Expense Not Found
+  </p>
+</div>
+`;
+
+exports[`should render EditExpensePage correctly 1`] = `
+<div>
+  <ExpenseForm
+    expense={
+      Object {
+        "amount": 71.97,
+        "date": 0,
+        "description": "Cheese - Cottage Cheese",
+        "note": "curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec",
+      }
+    }
+    onSubmit={[Function]}
+  />
+  <button
+    onClick={[Function]}
+  >
+    Remove
+  </button>
+</div>
+`;
