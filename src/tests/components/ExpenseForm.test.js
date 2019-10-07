@@ -2,6 +2,8 @@ import React from "react";
 import { shallow } from "enzyme";
 import ExpenseForm from "../../components/ExpenseForm";
 import expenses from "../redux/fixtures/expenses.fixture.js";
+import moment from "moment";
+import { SingleDatePicker } from "react-dates";
 
 it("should render ExpenseForm correctly", function() {
   const wrapper = shallow(<ExpenseForm />);
@@ -61,4 +63,35 @@ it("should set amount state property to user input if it's a number", function()
       }
     });
   expect(wrapper.state().amount).toEqual("345.56");
+});
+
+it("should call onSubmit prop for valid form submission", function() {
+  const onSubmitSpy = jest.fn();
+  const wrapper = shallow(
+    <ExpenseForm expense={expenses[0]} onSubmit={onSubmitSpy} />
+  );
+
+  wrapper.find("form").simulate("submit", { preventDefault: jest.fn() });
+  expect(wrapper.state().error).toBe("");
+
+  expect(onSubmitSpy).toHaveBeenLastCalledWith({
+    description: expenses[0].description,
+    note: expenses[0].note,
+    amount: expenses[0].amount,
+    date: expenses[0].createdAt
+  });
+});
+
+it("should set new date on date change", function() {
+  const now = moment();
+  const wrapper = shallow(<ExpenseForm />);
+  wrapper.find(SingleDatePicker).prop("onDateChange")(now);
+  expect(wrapper.state().date).toEqual(now);
+});
+
+it("should set calendar focus on change", function() {
+  const focused = true;
+  const wrapper = shallow(<ExpenseForm />);
+  wrapper.find(SingleDatePicker).prop("onFocusChange")({ focused });
+  expect(wrapper.state().calenderFocused).toBe(focused);
 });
