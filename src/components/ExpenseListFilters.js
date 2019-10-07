@@ -8,7 +8,7 @@ import {
 import { DateRangePicker } from "react-dates";
 import { setStartDate, setEndDate } from "../redux/actions/filters";
 
-class ExpenseListFilters extends React.Component {
+export class ExpenseListFilters extends React.Component {
   state = {
     calenderFocused: null
   };
