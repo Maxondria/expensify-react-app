@@ -3,7 +3,7 @@ import ExpenseForm from "./ExpenseForm";
 import { connect } from "react-redux";
 import { addExpense } from "../redux/actions/expenses";
 
-class CreateExpensePage extends React.Component {
+export class CreateExpensePage extends React.Component {
   onSubmit = expense => {
     this.props.addExpense(expense);
     this.props.history.push("/");
