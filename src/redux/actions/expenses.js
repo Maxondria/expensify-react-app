@@ -1,21 +1,34 @@
 import actionTypes from "../constants";
-import uuid from "uuid";
+import database from "../../firebase/firebase";
 
-const addExpense = ({
-  description = "",
-  note = "",
-  amount = 0,
-  date = 0
-} = {}) => ({
+const addExpense = expense => ({
   type: actionTypes.ADD_EXPENSE,
-  expense: {
-    id: uuid(),
-    description,
-    note,
-    amount,
-    createdAt: date
-  }
+  expense
 });
+
+export const startAddExpense = (expenseData = {}) => {
+  return dispatch => {
+    const {
+      description = "",
+      note = "",
+      amount = 0,
+      date: createdAt = 0
+    } = expenseData;
+
+    const expense = { description, amount, note, createdAt };
+    database
+      .ref("expenses")
+      .push(expense)
+      .then(ref => {
+        dispatch(
+          addExpense({
+            id: ref.key,
+            ...expense
+          })
+        );
+      });
+  };
+};
 
 const removeExpense = id => ({
   type: actionTypes.REMOVE_EXPENSE,
