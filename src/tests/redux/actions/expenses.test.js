@@ -2,7 +2,8 @@ import {
   addExpense,
   editExpense,
   removeExpense,
-  startAddExpense
+  startAddExpense,
+  setExpenses
 } from "../../../redux/actions/expenses";
 import actionTypes from "../../../redux/constants";
 import expenses from "../fixtures/expenses.fixture";
@@ -54,6 +55,15 @@ it("should return Add Expense Action", function() {
   expect(addExpenseAction).toMatchObject({
     type: actionTypes.ADD_EXPENSE,
     expense: expenses[0]
+  });
+});
+
+it("should return setExpenses Action", function() {
+  const addExpenseAction = setExpenses(expenses);
+
+  expect(addExpenseAction).toMatchObject({
+    type: actionTypes.SET_EXPENSES,
+    expenses
   });
 });
 

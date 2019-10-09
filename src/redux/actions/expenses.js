@@ -43,4 +43,9 @@ const editExpense = (id, expense) => ({
   }
 });
 
-export { addExpense, removeExpense, editExpense };
+const setExpenses = expenses => ({
+  type: actionTypes.SET_EXPENSES,
+  expenses
+});
+
+export { addExpense, setExpenses, removeExpense, editExpense };

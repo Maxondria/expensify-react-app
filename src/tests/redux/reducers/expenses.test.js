@@ -1,6 +1,7 @@
 import expensesReducer from "../../../redux/reducers/expensesReducer";
 import initialState from "../../../redux/store/initialState";
 import actionTypes from "../../../redux/constants";
+import expenses from "../fixtures/expenses.fixture";
 
 const expense = {
   id: "exp-ense-id",
@@ -34,6 +35,15 @@ it("should handle REMOVE_EXPENSE action", function() {
   });
 
   expect(state).toEqual([]);
+});
+
+it("should handle SET_EXPENSES action", function() {
+  const state = expensesReducer(expenses, {
+    type: actionTypes.SET_EXPENSES,
+    expenses: expenses[0]
+  });
+
+  expect(state).toEqual(expenses[0]);
 });
 
 it("should handle EDIT_EXPENSE action", function() {
