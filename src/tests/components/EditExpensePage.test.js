@@ -10,7 +10,7 @@ const props = {
     amount: expenses[0].amount,
     date: expenses[0].createdAt
   },
-  editExpense: jest.fn(),
+  startEditExpense: jest.fn(),
   startRemoveExpense: jest.fn(),
   match: { params: { id: 1 } },
   history: {
@@ -36,12 +36,15 @@ it("should handle onSubmit()", function() {
   const wrapper = shallow(<EditExpensePage {...props} />);
 
   wrapper.find("ExpenseForm").prop("onSubmit")(props.expense);
-  expect(props.editExpense).toHaveBeenLastCalledWith(props.match.params.id, {
-    note: expenses[0].note,
-    description: expenses[0].description,
-    amount: expenses[0].amount,
-    createdAt: expenses[0].createdAt
-  });
+  expect(props.startEditExpense).toHaveBeenLastCalledWith(
+    props.match.params.id,
+    {
+      note: expenses[0].note,
+      description: expenses[0].description,
+      amount: expenses[0].amount,
+      createdAt: expenses[0].createdAt
+    }
+  );
   expect(props.history.push).toHaveBeenLastCalledWith("/");
 });
 

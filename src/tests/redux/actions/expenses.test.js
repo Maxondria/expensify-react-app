@@ -5,7 +5,8 @@ import {
   startAddExpense,
   setExpenses,
   startSetExpenses,
-  startRemoveExpense
+  startRemoveExpense,
+  startEditExpense
 } from "../../../redux/actions/expenses";
 import actionTypes from "../../../redux/constants";
 import expenses from "../fixtures/expenses.fixture";
@@ -150,6 +151,30 @@ it("should remove expense from firebase before removing it from store", function
   store.dispatch(startRemoveExpense(expenses[0].id)).then(() => {
     const actions = store.getActions();
     expect(actions[0].type).toBe(actionTypes.REMOVE_EXPENSE);
+    done();
+  });
+});
+
+it("should successfully modify expense from firebase", function(done) {
+  const initialState = {};
+  const store = mockStore(initialState);
+
+  const expense = {
+    note: "edited note",
+    description: "edited description",
+    amount: 456.55,
+    createdAt: 1
+  };
+
+  const id = 1;
+
+  store.dispatch(startEditExpense(id, expense)).then(() => {
+    const actions = store.getActions();
+    expect(actions[0].type).toBe(actionTypes.EDIT_EXPENSE);
+    expect(actions[0].payload).toEqual({
+      expense,
+      id
+    });
     done();
   });
 });
