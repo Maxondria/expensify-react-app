@@ -27,5 +27,6 @@ if (process.env.NODE_ENV !== "test") {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
+const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database as default };
+export { firebase, GoogleAuthProvider, database as default };

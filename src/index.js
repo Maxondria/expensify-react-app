@@ -9,6 +9,7 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import configureStore from "./redux/store/configureStore";
 import { startSetExpenses } from "./redux/actions/expenses";
+import { firebase } from "./firebase/firebase";
 
 const store = configureStore();
 
@@ -25,3 +26,24 @@ store.dispatch(startSetExpenses()).then(() => {
     document.getElementById("root")
   );
 });
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log("Log in");
+  } else {
+    console.log("Log out");
+  }
+});
+
+// firebase
+//   .auth()
+//   .getRedirectResult()
+//   .then(function(result) {
+//     if (result.credential) {
+//       // This gives you a Google Access Token.
+//       const token = result.credential.accessToken;
+//       console.log(token);
+//     }
+//     const user = result.user;
+//     console.log(user);
+//   });
