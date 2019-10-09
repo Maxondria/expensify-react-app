@@ -13,6 +13,16 @@ import database from "../../../firebase/firebase";
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
+beforeEach(async () => {
+  const expensesData = {};
+
+  expenses.forEach(({ id, description, amount, createdAt, note }) => {
+    expensesData[id] = { description, amount, createdAt, note };
+  });
+
+  await database.ref("expenses").set(expensesData);
+});
+
 it("should return Remove Expense Action", function() {
   const id = "abd-efg-hij-klm";
 
