@@ -1,15 +1,28 @@
 import * as firebase from "firebase";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBWmzDdrJcYBgih8lM5rAKBna3S_mRC-OM",
-  authDomain: "expensify-react-app-9aa8c.firebaseapp.com",
-  databaseURL: "https://expensify-react-app-9aa8c.firebaseio.com",
-  projectId: "expensify-react-app-9aa8c",
-  storageBucket: "",
-  messagingSenderId: "299007655017",
-  appId: "1:299007655017:web:1e0a1147cdb3a1b6e5b6f8",
-  measurementId: "G-6J9WH3QBDW"
-};
+let firebaseConfig;
+
+if (process.env.NODE_ENV !== "test") {
+  firebaseConfig = {
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
+  };
+} else {
+  firebaseConfig = {
+    apiKey: process.env.REACT_APP_TEST_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_TEST_FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_TEST_FIREBASE_DATABASE_URL,
+    projectId: process.env.REACT_APP_TEST_FIREBASE_PROJECT_ID,
+    appId: process.env.REACT_APP_TEST_APP_ID,
+    messagingSenderId: process.env.REACT_APP_TEST_FIREBASE_MESSAGING_SENDER_ID,
+    measurementId: process.env.REACT_APP_TEST_MEASUREMENT_ID
+  };
+}
 
 firebase.initializeApp(firebaseConfig);
 
