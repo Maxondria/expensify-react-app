@@ -3,7 +3,8 @@ import {
   editExpense,
   removeExpense,
   startAddExpense,
-  setExpenses
+  setExpenses,
+  startSetExpenses
 } from "../../../redux/actions/expenses";
 import actionTypes from "../../../redux/constants";
 import expenses from "../fixtures/expenses.fixture";
@@ -96,7 +97,8 @@ it("should asynchronously handle saving data to firebase and store", function(do
       done();
     });
 });
-it("should add expense with defaults to firebase and store", function() {
+
+it("should add expense with defaults to firebase and store", function(done) {
   const initialState = {};
   const store = mockStore(initialState);
 
@@ -126,4 +128,16 @@ it("should add expense with defaults to firebase and store", function() {
       });
       done();
     });
+});
+
+it("should fetch all expenses from firebase and update store", function(done) {
+  const initialState = {};
+  const store = mockStore(initialState);
+
+  store.dispatch(startSetExpenses()).then(() => {
+    const actions = store.getActions();
+    expect(actions[0].type).toBe(actionTypes.SET_EXPENSES);
+
+    done();
+  });
 });
