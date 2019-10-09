@@ -11,7 +11,7 @@ const props = {
     date: expenses[0].createdAt
   },
   editExpense: jest.fn(),
-  removeExpense: jest.fn(),
+  startRemoveExpense: jest.fn(),
   match: { params: { id: 1 } },
   history: {
     push: jest.fn()
@@ -49,6 +49,8 @@ it("should remove expense and redirect to homepage if remove button clicked", fu
   const wrapper = shallow(<EditExpensePage {...props} />);
 
   wrapper.find("button").simulate("click");
-  expect(props.removeExpense).toHaveBeenLastCalledWith(props.match.params.id);
+  expect(props.startRemoveExpense).toHaveBeenLastCalledWith(
+    props.match.params.id
+  );
   expect(props.history.push).toHaveBeenLastCalledWith("/");
 });
