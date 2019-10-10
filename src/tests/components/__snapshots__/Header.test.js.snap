@@ -7,9 +7,9 @@ exports[`should render Header correctly 1`] = `
   </h1>
   <NavLink
     activeClassName="is-active"
-    to="/"
+    to="/dashboard"
   >
-    Home
+    Dashboard
   </NavLink>
    | 
   <NavLink

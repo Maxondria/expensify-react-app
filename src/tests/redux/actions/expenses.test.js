@@ -17,6 +17,8 @@ import database from "../../../firebase/firebase";
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
+const testUID = "fake-test-uid";
+
 beforeEach(async () => {
   const expensesData = {};
 
@@ -24,7 +26,7 @@ beforeEach(async () => {
     expensesData[id] = { description, amount, createdAt, note };
   });
 
-  await database.ref("expenses").set(expensesData);
+  await database.ref(`users/${testUID}/expenses`).set(expensesData);
 });
 
 it("should return Remove Expense Action", function() {
@@ -71,7 +73,7 @@ it("should return setExpenses Action", function() {
 });
 
 it("should asynchronously handle saving data to firebase and store", function(done) {
-  const initialState = {};
+  const initialState = { auth: { uid: testUID } };
   const store = mockStore(initialState);
   const expenseData = {
     note: expenses[0].note,
@@ -92,7 +94,9 @@ it("should asynchronously handle saving data to firebase and store", function(do
         }
       });
 
-      return database.ref(`expenses/${actions[0].expense.id}`).once("value");
+      return database
+        .ref(`users/${testUID}/expenses/${actions[0].expense.id}`)
+        .once("value");
     })
     .then(snapshot => {
       expect(snapshot.val()).toMatchObject(expenseData);
@@ -101,7 +105,7 @@ it("should asynchronously handle saving data to firebase and store", function(do
 });
 
 it("should add expense with defaults to firebase and store", function(done) {
-  const initialState = {};
+  const initialState = { auth: { uid: testUID } };
   const store = mockStore(initialState);
 
   store
@@ -119,7 +123,9 @@ it("should add expense with defaults to firebase and store", function(done) {
         }
       });
 
-      return database.ref(`expenses/${actions[0].expense.id}`).once("value");
+      return database
+        .ref(`users/${testUID}/expenses/${actions[0].expense.id}`)
+        .once("value");
     })
     .then(snapshot => {
       expect(snapshot.val()).toMatchObject({
@@ -133,7 +139,7 @@ it("should add expense with defaults to firebase and store", function(done) {
 });
 
 it("should fetch all expenses from firebase and update store", function(done) {
-  const initialState = {};
+  const initialState = { auth: { uid: testUID } };
   const store = mockStore(initialState);
 
   store.dispatch(startSetExpenses()).then(() => {
@@ -145,7 +151,7 @@ it("should fetch all expenses from firebase and update store", function(done) {
 });
 
 it("should remove expense from firebase before removing it from store", function(done) {
-  const initialState = {};
+  const initialState = { auth: { uid: testUID } };
   const store = mockStore(initialState);
 
   store.dispatch(startRemoveExpense(expenses[0].id)).then(() => {
@@ -156,7 +162,7 @@ it("should remove expense from firebase before removing it from store", function
 });
 
 it("should successfully modify expense from firebase", function(done) {
-  const initialState = {};
+  const initialState = { auth: { uid: testUID } };
   const store = mockStore(initialState);
 
   const expense = {
