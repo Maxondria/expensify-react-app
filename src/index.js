@@ -2,48 +2,46 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "normalize.css/normalize.css";
 import "./styles/styles.scss";
-import App from "./components/App";
-import { BrowserRouter as Router } from "react-router-dom";
+import App, { history } from "./components/App";
 import { Provider as ReduxProvider } from "react-redux";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import configureStore from "./redux/store/configureStore";
 import { startSetExpenses } from "./redux/actions/expenses";
 import { firebase } from "./firebase/firebase";
+import { login, logout } from "./redux/actions/auth";
 
 const store = configureStore();
 
 ReactDOM.render(<p>Loading...</p>, document.getElementById("root"));
 
-store.dispatch(startSetExpenses()).then(() => {
-  ReactDOM.render(
-    <ReduxProvider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </ReduxProvider>,
+const appRoot = (
+  <ReduxProvider store={store}>
+    <App />
+  </ReduxProvider>
+);
 
-    document.getElementById("root")
-  );
-});
+let hasRendered = false;
+
+const renderApp = () => {
+  if (!hasRendered) {
+    ReactDOM.render(appRoot, document.getElementById("root"));
+    hasRendered = true;
+  }
+};
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    console.log("Log in");
+    store.dispatch(login(user.uid));
+    store.dispatch(startSetExpenses()).then(() => {
+      renderApp();
+      if (history.location.pathname === "/") {
+        history.push("/dashboard");
+      }
+    });
   } else {
-    console.log("Log out");
+    renderApp();
+    store.dispatch(logout());
+    history.push("/");
   }
 });
-
-// firebase
-//   .auth()
-//   .getRedirectResult()
-//   .then(function(result) {
-//     if (result.credential) {
-//       // This gives you a Google Access Token.
-//       const token = result.credential.accessToken;
-//       console.log(token);
-//     }
-//     const user = result.user;
-//     console.log(user);
-//   });

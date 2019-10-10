@@ -7,7 +7,9 @@ const actionTypes = {
   SORT_BY_AMOUNT: "SORT_BY_AMOUNT",
   SET_START_DATE: "SET_START_DATE",
   SET_END_DATE: "SET_END_DATE",
-  SET_EXPENSES: "SET_EXPENSES"
+  SET_EXPENSES: "SET_EXPENSES",
+  LOGIN: "LOGIN",
+  LOGOUT: "LOGOUT"
 };
 
 export default actionTypes;
