@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 export const Header = props => (
   <header>
     <h1>Expensify</h1>
-    <NavLink to="/" activeClassName="is-active">
-      Home
+    <NavLink to="/dashboard" activeClassName="is-active">
+      Dashboard
     </NavLink>
     {" | "}
     <NavLink activeClassName="is-active" to="/create">
