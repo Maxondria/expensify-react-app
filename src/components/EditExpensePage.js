@@ -26,14 +26,26 @@ export class EditExpensePage extends React.Component {
     return (
       <div>
         {this.props.expense.length === 0 ? (
-          <p>Expense Not Found</p>
+          <p className="form__error">Expense Not Found</p>
         ) : (
           <>
-            <ExpenseForm
-              expense={this.props.expense}
-              onSubmit={this.onSubmit}
-            />
-            <button onClick={this.onRemoveExpense}>Remove</button>
+            <div className="page-header">
+              <div className="content-container">
+                <h1 className="page-header__title">Edit Expense</h1>
+              </div>
+            </div>
+            <div className="content-container">
+              <ExpenseForm
+                expense={this.props.expense}
+                onSubmit={this.onSubmit}
+              />
+              <button
+                className="button button--secondary"
+                onClick={this.onRemoveExpense}
+              >
+                Remove Expense
+              </button>
+            </div>
           </>
         )}
       </div>

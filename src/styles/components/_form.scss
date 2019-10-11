@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  //direct descendants... if one of these is a div, anything in it isn't a flex item but it's div is
+  > * {
+    margin-bottom: $m-size;
+  }
+}
+
+.form__error {
+  margin: 0 0 $m-size 0;
+  font-style: italic;
+}
