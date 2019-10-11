@@ -62,6 +62,7 @@ export default class ExpenseForm extends React.Component {
         <form onSubmit={this.onFormSubmit}>
           <input
             type="text"
+            className="text-input"
             name="description"
             value={this.state.description}
             placeholder="Description"
@@ -70,6 +71,7 @@ export default class ExpenseForm extends React.Component {
           />
           <input
             type="text"
+            className="text-input"
             name="amount"
             value={this.state.amount}
             onChange={this.OnChange}
@@ -90,6 +92,7 @@ export default class ExpenseForm extends React.Component {
             cols="20"
             rows="5"
             name="note"
+            className="textarea"
             placeholder="Add A Note"
             onChange={this.OnChange}
             value={this.state.note}
