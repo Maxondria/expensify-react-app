@@ -10,10 +10,11 @@ import configureStore from "./redux/store/configureStore";
 import { startSetExpenses } from "./redux/actions/expenses";
 import { firebase } from "./firebase/firebase";
 import { login, logout } from "./redux/actions/auth";
+import LoadingPage from "./components/LoadingPage";
 
 const store = configureStore();
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById("root"));
+ReactDOM.render(<LoadingPage />, document.getElementById("root"));
 
 const appRoot = (
   <ReduxProvider store={store}>

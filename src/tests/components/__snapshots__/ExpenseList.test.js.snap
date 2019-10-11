@@ -1,54 +1,108 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render expense list with 'No Expenses Found'  1`] = `
-<div>
-  <p>
-    No Expenses Found
-  </p>
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Expense
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div
+      className="list-item list-item__message"
+    >
+      <span>
+        No Expenses Found
+      </span>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`should render list of expenses correctly 1`] = `
-<div>
-  <ExpenseListItem
-    amount={71.97}
-    createdAt={0}
-    description="Cheese - Cottage Cheese"
-    id={1}
-    key="1"
-    note="curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec"
-  />
-  <ExpenseListItem
-    amount={103.39}
-    createdAt={-345600000}
-    description="Cheese - Cheddar With Claret"
-    id={4}
-    key="4"
-    note="lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus"
-  />
-  <ExpenseListItem
-    amount={80.26}
-    createdAt={345600000}
-    description="Garbage Bags - Clear"
-    id={2}
-    key="2"
-    note="aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien"
-  />
-  <ExpenseListItem
-    amount={74.86}
-    createdAt={-172800000}
-    description="Truffle Shells - Semi - Sweet"
-    id={3}
-    key="3"
-    note="eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl"
-  />
-  <ExpenseListItem
-    amount={78.67}
-    createdAt={172800000}
-    description="Lid Tray - 16in Dome"
-    id={5}
-    key="5"
-    note="justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio"
-  />
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Expense
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <ExpenseListItem
+      amount={71.97}
+      createdAt={0}
+      description="Cheese - Cottage Cheese"
+      id={1}
+      key="1"
+      note="curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec"
+    />
+    <ExpenseListItem
+      amount={103.39}
+      createdAt={-345600000}
+      description="Cheese - Cheddar With Claret"
+      id={4}
+      key="4"
+      note="lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus"
+    />
+    <ExpenseListItem
+      amount={80.26}
+      createdAt={345600000}
+      description="Garbage Bags - Clear"
+      id={2}
+      key="2"
+      note="aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien"
+    />
+    <ExpenseListItem
+      amount={74.86}
+      createdAt={-172800000}
+      description="Truffle Shells - Semi - Sweet"
+      id={3}
+      key="3"
+      note="eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl"
+    />
+    <ExpenseListItem
+      amount={78.67}
+      createdAt={172800000}
+      description="Lid Tray - 16in Dome"
+      id={5}
+      key="5"
+      note="justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio"
+    />
+  </div>
 </div>
 `;

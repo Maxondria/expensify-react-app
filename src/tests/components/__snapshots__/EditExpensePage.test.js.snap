@@ -2,7 +2,9 @@
 
 exports[`should exit page if no expense was found (Reloading Page with temporary store) 1`] = `
 <div>
-  <p>
+  <p
+    className="form__error"
+  >
     Expense Not Found
   </p>
 </div>
@@ -10,21 +12,39 @@ exports[`should exit page if no expense was found (Reloading Page with temporary
 
 exports[`should render EditExpensePage correctly 1`] = `
 <div>
-  <ExpenseForm
-    expense={
-      Object {
-        "amount": 71.97,
-        "date": 0,
-        "description": "Cheese - Cottage Cheese",
-        "note": "curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec",
-      }
-    }
-    onSubmit={[Function]}
-  />
-  <button
-    onClick={[Function]}
+  <div
+    className="page-header"
   >
-    Remove
-  </button>
+    <div
+      className="content-container"
+    >
+      <h1
+        className="page-header__title"
+      >
+        Edit Expense
+      </h1>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <ExpenseForm
+      expense={
+        Object {
+          "amount": 71.97,
+          "date": 0,
+          "description": "Cheese - Cottage Cheese",
+          "note": "curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec",
+        }
+      }
+      onSubmit={[Function]}
+    />
+    <button
+      className="button button--secondary"
+      onClick={[Function]}
+    >
+      Remove Expense
+    </button>
+  </div>
 </div>
 `;
